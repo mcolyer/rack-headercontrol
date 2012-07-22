@@ -14,6 +14,8 @@ module Rack
         request = Rack::Request.new(env)
         response_headers = Utils::HeaderHash.new(response[1])
         @recorder.each do |condition, action|
+          puts request.path.inspect
+          puts condition.inspect
           if request.path.match condition
             action.call(response_headers)
           end
